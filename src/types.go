@@ -21,6 +21,8 @@ type Server struct {
 type Config struct {
 	SHEETHost string
 	SHEETPort string
+	CRUDHost  string
+	CRUDPort  string
 }
 
 type Application struct {
@@ -39,4 +41,22 @@ type Application struct {
 	Extent             string
 	ExtentConfidence   string
 	DeRecognitionvalue string
+}
+
+type AssetRegisterResponse struct {
+	Name               string `json:"name"`
+	Description        string `json:"description"`
+	SerialNo           string `json:"serialno"`
+	Size               string `json:"size"`
+	Type               string `json:"type"`
+	Class              string `json:"class"`
+	Dimension1Val      string `json:"dimension1val"`
+	Dimension2Val      string `json:"dimension2val"`
+	Dimension3Val      string `json:"dimension3val`
+	Dimension4Val      string `json:"dimension4val"`
+	Dimension5Val      string `json:"dimension5val"`
+	Dimension6Val      string `json:"dimension6val"`
+	Extent             string `json:"extent"`
+	ExtentConfidence   string `json:"extentconfidence"`
+	DeRecognitionvalue string `json:"derecognitionvalue"`
 }

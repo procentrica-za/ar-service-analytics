@@ -2,6 +2,6 @@ package main
 
 //create routes
 func (s *Server) routes() {
-	s.router.HandleFunc("/sheet", s.handleaddsheetdata()).Methods("POST")
+	s.router.HandleFunc("/analyseassets", s.handleanalyseassets()).Methods("GET")
 
 }
