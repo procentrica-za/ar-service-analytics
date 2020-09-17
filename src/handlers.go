@@ -118,6 +118,7 @@ func (s *Server) handleanalyseassets() http.HandlerFunc {
 			row = append(row, usance.Dimension6Val)
 			row = append(row, usance.Extent)
 			row = append(row, usance.ExtentConfidence)
+			row = append(row, usance.Takeondate)
 			row = append(row, usance.DeRecognitionvalue)
 			writer.Write(row)
 		}
@@ -189,9 +190,10 @@ func (s *Server) handleanalyseassets() http.HandlerFunc {
 				Dimension6Val:      line[11],
 				Extent:             line[12],
 				ExtentConfidence:   line[13],
-				DeRecognitionvalue: line[14],
+				Takeondate:         line[14],
+				DeRecognitionvalue: line[15],
 			}
-			myval := []interface{}{asset.Name, asset.Description, asset.SerialNo, asset.Size, asset.Type, asset.Class, asset.Dimension1Val, asset.Dimension2Val, asset.Dimension3Val, asset.Dimension4Val, asset.Dimension5Val, asset.Dimension6Val, asset.Extent, asset.ExtentConfidence, asset.DeRecognitionvalue}
+			myval := []interface{}{asset.Name, asset.Description, asset.SerialNo, asset.Size, asset.Type, asset.Class, asset.Dimension1Val, asset.Dimension2Val, asset.Dimension3Val, asset.Dimension4Val, asset.Dimension5Val, asset.Dimension6Val, asset.Extent, asset.ExtentConfidence, asset.Takeondate, asset.DeRecognitionvalue}
 			vr.Values = append(vr.Values, myval)
 		}
 
