@@ -130,7 +130,7 @@ func (s *Server) handleanalyseassets() http.HandlerFunc {
 		//Open file
 		Openfile, err := os.Open(fileName)
 
-		//return to beginning  of array
+		//return to beginning  of array.
 		Openfile.Seek(0, 0)
 
 		var dlterror = os.Remove(fileName)
