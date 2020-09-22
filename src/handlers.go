@@ -120,6 +120,7 @@ func (s *Server) handleanalyseassets() http.HandlerFunc {
 			row = append(row, usance.ExtentConfidence)
 			row = append(row, usance.Takeondate)
 			row = append(row, usance.DeRecognitionvalue)
+			row = append(row, usance.Latitude)
 			writer.Write(row)
 		}
 		fmt.Println("Populated CSV")
