@@ -43,7 +43,7 @@ type Application struct {
 	Takeondate         string
 	DeRecognitionvalue string
 	Latitude           string
-	Longtitude         string
+	Longitude         string
 }
 
 type AssetRegisterResponse struct {
@@ -64,5 +64,5 @@ type AssetRegisterResponse struct {
 	TakeOnDate         string `json:"takeondate"`
 	DeRecognitionvalue string `json:"derecognitionvalue"`
 	Latitude           string `json:"latitude"`
-	Longtitude         string `json:"longtitude"`
+	Longitude         string `json:"longitude"`
 }

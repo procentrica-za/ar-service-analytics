@@ -120,7 +120,7 @@ func (s *Server) handleanalyseassets() http.HandlerFunc {
 			row = append(row, usance.ExtentConfidence)
 			row = append(row, usance.Takeondate)
 			row = append(row, usance.DeRecognitionvalue)
-			row = append(row, usance.Latitude+";"+usance.Longtitude)
+			row = append(row, usance.Latitude+" , "+usance.Longitude)
 			writer.Write(row)
 		}
 		fmt.Println("Populated CSV")
@@ -193,8 +193,9 @@ func (s *Server) handleanalyseassets() http.HandlerFunc {
 				ExtentConfidence:   line[13],
 				Takeondate:         line[14],
 				DeRecognitionvalue: line[15],
+				Latitude:           line[16],
 			}
-			myval := []interface{}{asset.Name, asset.Description, asset.SerialNo, asset.Size, asset.Type, asset.Class, asset.Dimension1Val, asset.Dimension2Val, asset.Dimension3Val, asset.Dimension4Val, asset.Dimension5Val, asset.Dimension6Val, asset.Extent, asset.ExtentConfidence, asset.Takeondate, asset.DeRecognitionvalue}
+			myval := []interface{}{asset.Name, asset.Description, asset.SerialNo, asset.Size, asset.Type, asset.Class, asset.Dimension1Val, asset.Dimension2Val, asset.Dimension3Val, asset.Dimension4Val, asset.Dimension5Val, asset.Dimension6Val, asset.Extent, asset.ExtentConfidence, asset.Takeondate, asset.DeRecognitionvalue, asset.Latitude}
 			vr.Values = append(vr.Values, myval)
 		}
 
