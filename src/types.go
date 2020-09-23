@@ -42,6 +42,8 @@ type Application struct {
 	ExtentConfidence   string
 	Takeondate         string
 	DeRecognitionvalue string
+	Latitude           string
+	Longtitude         string
 }
 
 type AssetRegisterResponse struct {
