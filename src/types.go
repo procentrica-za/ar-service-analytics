@@ -42,6 +42,8 @@ type Application struct {
 	ExtentConfidence   string
 	Takeondate         string
 	DeRecognitionvalue string
+	Latitude           string
+	Longtitude         string
 }
 
 type AssetRegisterResponse struct {
@@ -61,4 +63,6 @@ type AssetRegisterResponse struct {
 	ExtentConfidence   string `json:"extentconfidence"`
 	TakeOnDate         string `json:"takeondate"`
 	DeRecognitionvalue string `json:"derecognitionvalue"`
+	Latitude           string `json:"latitude"`
+	Longtitude         string `json:"longtitude"`
 }
