@@ -30,7 +30,7 @@ func (s *Server) handleGetAssetFlexValCondition() http.HandlerFunc {
 		if respErr != nil {
 			w.WriteHeader(500)
 			fmt.Fprint(w, respErr.Error())
-			fmt.Println("Error in communication with CRUD service endpoint for request to location information")
+			fmt.Println("Error in communication with CRUD service endpoint for request to get assetflexvalcondition")
 			return
 		}
 		if req.StatusCode != 200 {
@@ -45,8 +45,8 @@ func (s *Server) handleGetAssetFlexValCondition() http.HandlerFunc {
 				log.Fatal(err)
 			}
 			bodyString := string(bodyBytes)
-			fmt.Fprintf(w, "An internal error has occured whilst trying to get location data"+bodyString)
-			fmt.Println("An internal error has occured whilst trying to get location data" + bodyString)
+			fmt.Fprintf(w, "An internal error has occured whilst trying to get assetflexvalcondition"+bodyString)
+			fmt.Println("An internal error has occured whilst trying to get assetflexvalcondition" + bodyString)
 			return
 		}
 
