@@ -25,44 +25,15 @@ type Config struct {
 	CRUDPort  string
 }
 
-type Application struct {
-	Name               string
-	Description        string
-	SerialNo           string
-	Size               string
-	Type               string
-	Class              string
-	Dimension1Val      string
-	Dimension2Val      string
-	Dimension3Val      string
-	Dimension4Val      string
-	Dimension5Val      string
-	Dimension6Val      string
-	Extent             string
-	ExtentConfidence   string
-	Takeondate         string
-	DeRecognitionvalue string
-	Latitude           string
-	Longitude         string
-}
-
-type AssetRegisterResponse struct {
-	Name               string `json:"name"`
-	Description        string `json:"description"`
-	SerialNo           string `json:"serialno"`
-	Size               string `json:"size"`
-	Type               string `json:"type"`
-	Class              string `json:"class"`
-	Dimension1Val      string `json:"dimension1val"`
-	Dimension2Val      string `json:"dimension2val"`
-	Dimension3Val      string `json:"dimension3val`
-	Dimension4Val      string `json:"dimension4val"`
-	Dimension5Val      string `json:"dimension5val"`
-	Dimension6Val      string `json:"dimension6val"`
-	Extent             string `json:"extent"`
-	ExtentConfidence   string `json:"extentconfidence"`
-	TakeOnDate         string `json:"takeondate"`
-	DeRecognitionvalue string `json:"derecognitionvalue"`
-	Latitude           string `json:"latitude"`
-	Longitude         string `json:"longitude"`
+type AFVCondition struct {
+	Id                   string `json:"id,omitempty"`
+	Assetname            string `json:"assetname,omitempty"`
+	Description          string `json:"description,omitempty"`
+	Lat                  string `json:"lat,omitempty"`
+	Lon                  string `json:"lon,omitempty"`
+	Assetflexvalname     string `json:"assetflexvalname,omitempty"`
+	Assetflexvalvalue    string `json:"assetflexvalvalue,omitempty"`
+	Crc                  string `json:"crc,omitempty"`
+	Drc                  string `json:"drc,omitempty"`
+	Assetflexvaluesorted string `json:"Assetflexvaluesorted,omitempty"`
 }
