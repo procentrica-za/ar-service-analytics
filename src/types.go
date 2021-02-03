@@ -26,6 +26,7 @@ type Config struct {
 }
 
 type AFVCondition struct {
+	Assetname            string `json:"assetname,omitempty"`
 	Crc                  string `json:"crc,omitempty"`
 	Drc                  string `json:"drc,omitempty"`
 	Assetflexvaluesorted string `json:"Assetflexvaluesorted,omitempty"`
