@@ -8,4 +8,6 @@ func (s *Server) routes() {
 	s.router.HandleFunc("/renewalprofile", s.handleGetRenewalProfile()).Methods("GET")
 	s.router.HandleFunc("/riskcriticality", s.handleGetRiskCriticality()).Methods("GET")
 	s.router.HandleFunc("/replacementbycondition", s.handleGetReplacementByCondition()).Methods("GET")
+
+	s.router.HandleFunc("/riskcriticalitydd", s.handleGetRiskCriticalityDrillDown()).Methods("GET")
 }

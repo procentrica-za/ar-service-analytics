@@ -65,6 +65,13 @@ type RiskCriticality struct {
 	CRC         string `json:"replacementcost"`
 }
 
+type RiskCriticalityDD struct {
+	Name        string  `json:"a"`
+	Consequence string  `json:"b"`
+	Likelyhood  string  `json:"c"`
+	CRC         float32 `json:"d"`
+}
+
 type ReplacementByCondition struct {
 	RULYears  string `json:"rulyearsears"`
 	Condition string `json:"condition"`
