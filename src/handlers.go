@@ -1,6 +1,7 @@
 package main
 
 import (
+	"compress/gzip"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -138,19 +139,15 @@ func (s *Server) handleGetPortfolio() http.HandlerFunc {
 			fmt.Println("Error occured in decoding get assets response ")
 			return
 		}
-		//convert struct back to JSON.
-		js, jserr := json.Marshal(assetsList)
-		if jserr != nil {
-			w.WriteHeader(500)
-			fmt.Fprint(w, jserr.Error())
-			fmt.Println("Error occured when trying to marshal the decoded response into specified JSON format!")
-			return
-		}
-
-		//return success back to Front-End user
-		w.Header().Set("Content-Type", "application/json")
+		// create header
+		w.Header().Add("Accept-Charset", "utf-8")
+		w.Header().Add("Content-Type", "application/json")
+		w.Header().Set("Content-Encoding", "gzip")
 		w.WriteHeader(200)
-		w.Write(js)
+		// Gzip data
+		gz := gzip.NewWriter(w)
+		json.NewEncoder(gz).Encode(assetsList)
+		gz.Close()
 	}
 }
 
