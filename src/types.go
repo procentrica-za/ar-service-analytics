@@ -90,7 +90,7 @@ type RiskCriticalityDetails struct {
 	Likelyhood        string  `json:"likelyhood,omititempty"`
 	LikelyhoodWeight  string  `json:"lweight,omititempty"`
 	CRC               float32 `json:"replacementcost,omititempty"`
-	score             string  `json:"score,omititempty"`
+	Score             string  `json:"score,omititempty"`
 }
 
 type RiskCriticalityFilter struct {
