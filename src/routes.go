@@ -10,4 +10,6 @@ func (s *Server) routes() {
 	s.router.HandleFunc("/replacementbycondition", s.handleGetReplacementByCondition()).Methods("GET")
 
 	s.router.HandleFunc("/riskcriticalitydd", s.handleGetRiskCriticalityDrillDown()).Methods("GET")
+	s.router.HandleFunc("/riskcriticalitydetails", s.handleGetRiskCriticalityDetails()).Methods("GET")
+	s.router.HandleFunc("/riskcriticalityfilter", s.handleGetRiskCriticalityFilter()).Methods("GET")
 }
