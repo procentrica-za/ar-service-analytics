@@ -117,3 +117,23 @@ type ReplacementByCondition struct {
 	Condition string `json:"condition"`
 	CRC       string `json:"replacementcost"`
 }
+
+type FlattenedHierarchyFilter struct {
+	NodeID      string `json:"nodeid,omitempty"`
+	Likelyhood  string `json:"likelyhood,omitempty"`
+	Consequence string `json:"consequence,omitempty"`
+}
+
+type PortfolioDD struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
+type PortfolioList struct {
+	Portfolio []PortfolioDD `json:"levels"`
+	CRC       float32       `json:"crc"`
+}
+
+type PortfolioListHigher struct {
+	PortfolioHigher []PortfolioList `json:"portfolio"`
+}
