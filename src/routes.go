@@ -13,4 +13,5 @@ func (s *Server) routes() {
 	s.router.HandleFunc("/riskcriticalitydetails", s.handleGetRiskCriticalityDetails()).Methods("GET")
 	s.router.HandleFunc("/riskcriticalityfilter", s.handleGetRiskCriticalityFilter()).Methods("GET")
 	s.router.HandleFunc("/portfoliofiltered", s.handleGetPortfolioFilter()).Methods("POST")
+	s.router.HandleFunc("/renewalprofiledetails", s.handleGetRenewalProfileDetails()).Methods("GET")
 }

@@ -59,6 +59,12 @@ type RenewalProfile struct {
 	CRC                string `json:"replacementcost"`
 }
 
+type RenewalProfileDetails struct {
+	Rul                float32 `json:"rulyears"`
+	Costopeningbalance float32 `json:"costopeningbalance"`
+	CRC                float32 `json:"replacementcost"`
+}
+
 type RiskCriticality struct {
 	Consequence string `json:"Consequence"`
 	Likelyhood  string `json:"likelyhood"`

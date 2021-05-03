@@ -729,3 +729,72 @@ func (s *Server) handleGetPortfolioFilter() http.HandlerFunc {
 		return
 	}
 }
+
+func (s *Server) handleGetRenewalProfileDetails() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println("Handle Get Renewal profile details has Been Called...")
+
+		nodeid := r.URL.Query().Get("nodeid")
+
+		//Check if no Node ID was provided in the URL
+
+		if nodeid == "" {
+			w.WriteHeader(500)
+			fmt.Fprint(w, "Functional Location ID not properly provided in URL")
+			fmt.Println("Functional Location ID not properly provided in URL")
+			return
+		}
+
+		//post to crud service
+		req, respErr := http.Get("http://" + config.CRUDHost + ":" + config.CRUDPort + "/renewalprofiledetails?nodeid=" + nodeid)
+
+		//check for response error of 500
+		if respErr != nil {
+			w.WriteHeader(500)
+			fmt.Fprint(w, respErr.Error())
+			fmt.Println("Error in communication with CRUD service endpoint for request to get Renewal profile")
+			return
+		}
+		if req.StatusCode != 200 {
+			w.WriteHeader(req.StatusCode)
+			fmt.Fprint(w, "Request to DB can't be completed...")
+			fmt.Println("Request to DB can't be completed...")
+		}
+		if req.StatusCode == 500 {
+			w.WriteHeader(500)
+			bodyBytes, err := ioutil.ReadAll(req.Body)
+			if err != nil {
+				log.Fatal(err)
+			}
+			bodyString := string(bodyBytes)
+			fmt.Fprintf(w, "An internal error has occured whilst trying to get Renewal profile"+bodyString)
+			fmt.Println("An internal error has occured whilst trying to get Renewal profile" + bodyString)
+			return
+		}
+
+		//close the request
+		defer req.Body.Close()
+
+		//create new response struct for JSON list
+		assetsList := []RenewalProfileDetails{}
+
+		//decode request into decoder which converts to the struct
+		decoder := json.NewDecoder(req.Body)
+		err1 := decoder.Decode(&assetsList)
+		if err1 != nil {
+			w.WriteHeader(500)
+			fmt.Fprint(w, err1.Error())
+			fmt.Println("Error occured in decoding get assets response ")
+			return
+		}
+		// create header
+		w.Header().Add("Accept-Charset", "utf-8")
+		w.Header().Add("Content-Type", "application/json")
+		w.Header().Set("Content-Encoding", "gzip")
+		w.WriteHeader(200)
+		// Gzip data
+		gz := gzip.NewWriter(w)
+		json.NewEncoder(gz).Encode(assetsList)
+		gz.Close()
+	}
+}
