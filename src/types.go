@@ -129,7 +129,15 @@ type FlattenedHierarchyFilter struct {
 	Likelyhood  string `json:"likelyhood,omitempty"`
 	Consequence string `json:"consequence,omitempty"`
 	AssettypeID string `json:"assettypeid,omitempty"`
-	Rulyears    string `json:"rulyears,omitempty"`
+}
+
+type PortfolioListCost struct {
+	Portfolio []PortfolioDD `json:"levels"`
+	Cost      float32       `json:"cost"`
+}
+
+type PortfolioListHigherCost struct {
+	PortfolioHigher []PortfolioListCost `json:"portfolio"`
 }
 
 type PortfolioDD struct {
