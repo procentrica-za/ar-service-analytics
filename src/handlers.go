@@ -734,25 +734,35 @@ func (s *Server) handleGetRenewalProfileDetails() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Handle Get Renewal profile details has Been Called...")
 
-		nodeid := r.URL.Query().Get("nodeid")
+		///get JSON payload
+		filterparams := FlattenedHierarchyFilter{}
+		err := json.NewDecoder(r.Body).Decode(&filterparams)
 
-		//Check if no Node ID was provided in the URL
-
-		if nodeid == "" {
+		//handle for bad JSON provided
+		if err != nil {
 			w.WriteHeader(500)
-			fmt.Fprint(w, "Functional Location ID not properly provided in URL")
-			fmt.Println("Functional Location ID not properly provided in URL")
+			fmt.Fprint(w, err.Error())
+			fmt.Println("Error with hierarchy filter parameters")
 			return
 		}
+		//create byte array from JSON payload
+		requestByte, _ := json.Marshal(filterparams)
 
 		//post to crud service
-		req, respErr := http.Get("http://" + config.CRUDHost + ":" + config.CRUDPort + "/renewalprofiledetails?nodeid=" + nodeid)
+		req, respErr := http.Post("http://"+config.CRUDHost+":"+config.CRUDPort+"/renewalprofiledetails", "application/json", bytes.NewBuffer(requestByte))
+		//check for response error of 500
+		if respErr != nil {
+			w.WriteHeader(500)
+			fmt.Fprint(w, respErr.Error())
+			fmt.Println("Error in communication with CRUD service endpoint for request to retrieve nodefunclocs spatial filtered.")
+			return
+		}
 
 		//check for response error of 500
 		if respErr != nil {
 			w.WriteHeader(500)
 			fmt.Fprint(w, respErr.Error())
-			fmt.Println("Error in communication with CRUD service endpoint for request to get Renewal profile")
+			fmt.Println("Error in communication with CRUD service endpoint for request to get nodefunclocs spatial filtered")
 			return
 		}
 		if req.StatusCode != 200 {
@@ -767,8 +777,8 @@ func (s *Server) handleGetRenewalProfileDetails() http.HandlerFunc {
 				log.Fatal(err)
 			}
 			bodyString := string(bodyBytes)
-			fmt.Fprintf(w, "An internal error has occured whilst trying to get Renewal profile"+bodyString)
-			fmt.Println("An internal error has occured whilst trying to get Renewal profile" + bodyString)
+			fmt.Fprintf(w, "An internal error has occured whilst trying to get nodefunclocs spatial filtered"+bodyString)
+			fmt.Println("An internal error has occured whilst trying to get nodefunclocs spatial filtered" + bodyString)
 			return
 		}
 
