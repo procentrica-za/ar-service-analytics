@@ -154,3 +154,8 @@ type PortfolioList struct {
 type PortfolioListHigher struct {
 	PortfolioHigher []PortfolioList `json:"portfolio"`
 }
+
+type YearReplacementDetails struct {
+	Rul float32 `json:"rulyears"`
+	CRC float32 `json:"replacementcost"`
+}
