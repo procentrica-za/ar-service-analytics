@@ -159,3 +159,9 @@ type YearReplacementDetails struct {
 	Rul float32 `json:"rulyears"`
 	CRC float32 `json:"replacementcost"`
 }
+
+type ReplacementByConditionDetails struct {
+	RULYears  float32 `json:"rulyears"`
+	Condition string  `json:"condition"`
+	CRC       float32 `json:"replacementcost"`
+}

@@ -16,4 +16,5 @@ func (s *Server) routes() {
 	s.router.HandleFunc("/renewalprofiledetails", s.handleGetRenewalProfileDetails()).Methods("POST")
 	s.router.HandleFunc("/portfoliofilteredcost", s.handleGetPortfolioFilterCost()).Methods("POST")
 	s.router.HandleFunc("/yearreplacementdetails", s.handleGetYearReplacementDetails()).Methods("POST")
+	s.router.HandleFunc("/replacementbyconditiondetails", s.handleGetReplacementByConditionDetails()).Methods("POST")
 }
